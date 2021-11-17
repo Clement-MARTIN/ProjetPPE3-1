@@ -57,6 +57,11 @@ class Article
      */
     private $idCat;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Url;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +159,18 @@ class Article
     public function setIdCat(?Categorie $idCat): self
     {
         $this->idCat = $idCat;
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->Url;
+    }
+
+    public function setUrl(string $Url): self
+    {
+        $this->Url = $Url;
 
         return $this;
     }

@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Article
 {
@@ -60,11 +62,36 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Url;
+    private $slug;
+
+    /**
+     * Permet d'imitialiser le slug !
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function initializeSlug(){
+        if (empty($this->slug)){
+            $slugify = new Slugify();
+            $this->slug = $slugify->slugify($this->name);
+        }
+    }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -159,18 +186,6 @@ class Article
     public function setIdCat(?Categorie $idCat): self
     {
         $this->idCat = $idCat;
-
-        return $this;
-    }
-
-    public function getUrl(): ?string
-    {
-        return $this->Url;
-    }
-
-    public function setUrl(string $Url): self
-    {
-        $this->Url = $Url;
 
         return $this;
     }

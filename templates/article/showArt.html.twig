@@ -1,7 +1,7 @@
 {% extends 'base.html.twig'%}
 
 {% block title %}
- Présentation de l'article
+    {{art.name}}
 {% endblock %}
 
 {% block body %}
@@ -9,14 +9,37 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="test">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto soluta nemo, ipsum illo distinctio quae repudiandae delectus aliquam dignissimos iure debitis quia maiores atque, vitae velit. Sequi ea explicabo doloremque.
-                </div>
-                <div class="test1">
-                Salut, les jeunes / loulou
+                    <p><strong>Image à mettre ici</strong></p>
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner mt-4">
+                            <div class="carousel-item active">
+                                <img src="https://creerunblog.net/wp-content/uploads/2021/06/random_1623344964.jpg" style=" max-width: 300px; height: 200px" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://img.bestdealplus.com/ae04/kf/Hb734e2023bf245e4a6a45333358e30f1p.jpg" style=" max-width: 300px; height: 200px" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="..." class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore obcaecati ea minima, nisi mollitia corporis qui facilis possimus itaque alias modi ab ad voluptates pariatur non, tempore quam! Autem, atque.
+                <div class="mt-2">
+                    <p><strong>Description</strong> <br> {{ art.description }}</p>
+                </div>
+                <div class="mt-4">
+                   <p><strong>Prix de l'article : {{ art.prix }}&euro;</strong></p>
+                </div>
             </div>
         </div>
     </div>

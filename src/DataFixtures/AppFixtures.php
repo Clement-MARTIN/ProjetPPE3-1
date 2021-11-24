@@ -20,18 +20,20 @@ class AppFixtures extends Fixture
             "Chaussures et Sacs", "Cuisine & Maison", "DVD & Blu-ray", "Epicerie",
             "Fournitures de bureau", "Electroménager", "High-Tech", "Hygiène & Santé",
             "Informatique", "Instruments de musique", "Jardin", "Jeux & Jouets",
-            "Jeux Video", "Livres", "Logiciels", "Luminaires & Eclairage",
-            "Mode","Moins de 10€","Montres","Musique: CD & Vinyles",
+            "Jeux Video", "Livres", "Logiciels", "Luminaires & Eclairage","Mécanique",
+            "Mode","Montres","Musique","Musique: CD & Vinyles",
             "Musique classique","Secteur industriel et scientifique","Sports & Loisirs","Vétements et accessoires"];
+
         $m = 0;
         $cates = [];
-        for ($j = 0; $j <= 31; $j++){
+        for ($j = 0; $j <= 32; $j++){
             $cate = new Categorie();
             $cate->setNameCat($cateListe[$m]);
             $m += 1;
             $manager->persist($cate);
             array_push($cates, $cate);
         }
+
 
         for($i = 0; $i <= 300; $i++){
             $article = new Article();

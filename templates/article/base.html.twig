@@ -5,32 +5,25 @@
 {% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col-md-10">
-            <div class="container">
-                <div class="row">
-                    {% for art in arts %}
-                        <div class="col-md-3">
-                            <div class="card bg-light mb-3">
-                                <div style="padding: 5px">
-                                    <p>
-                                        <a href="{{ path('show_art', {'slug' : art.slug}) }}">
+        <div class="row" style="margin : 1rem">
+            <div class="col-md-10">
+                <div class="container">
+                    <div class="row ">
+                        {% for art in arts %}
+                            <div class="col-md-3">
+                                <div class="card mb-3">
+                                    <div style="padding: 5px">
+                                        <a style="color : lightgrey" href="{{ path('show_art', {'slug' : art.slug}) }}">
                                             {{ art.name }}
                                         </a>
-                                    </p>
+                                        <p>{{ art.prix }} €</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                    <div class="col-md-2">
+                        {% endfor %}
 
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
-
-        </div>
-    </div>
-
 {% endblock %}

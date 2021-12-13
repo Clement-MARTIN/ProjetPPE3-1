@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} - Inscription{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Créer un utilisateur</h1>
+        {{ form_start(form) }}
+
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary mt-3 mb-3">Créer l'utilisateur</button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

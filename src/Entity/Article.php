@@ -2,13 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticleRepository;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ArticleRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  * @ORM\HasLifecycleCallbacks
+ * @Vich\Uploadable()
  */
 class Article
 {
@@ -18,6 +21,22 @@ class Article
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * Undocumented variable
+     *
+     * @var string|null
+     * @ORM\Column(type="string", length=255)
+     */
+    private $filename;
+
+    /**
+     * Undocumented variable
+     *
+     * @Vich\UploadableField(mapping="article_image", fileNameProperty="filename")
+     * @var File|null
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -186,6 +205,56 @@ class Article
     public function setIdCat(?Categorie $idCat): self
     {
         $this->idCat = $idCat;
+
+        return $this;
+    }
+
+    
+
+    /**
+     * Get undocumented variable
+     *
+     * @return  File|null
+     */ 
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set undocumented variable
+     *
+     * @param  File|null  $imageFile  Undocumented variable
+     *
+     * @return  self
+     */ 
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
+
+        return $this;
+    }
+
+    /**
+     * Get undocumented variable
+     *
+     * @return  string|null
+     */ 
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    /**
+     * Set undocumented variable
+     *
+     * @param  string|null  $filename  Undocumented variable
+     *
+     * @return  self
+     */ 
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
 
         return $this;
     }

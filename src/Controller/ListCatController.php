@@ -2,23 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Repository\CategorieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends AbstractController
+class ListCatController extends AbstractController
 {
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function recentArticles(CategorieRepository $repo)
+    public function recentArticles(CategorieRepository $repo): Response
     {
-
         $cats = $repo->findAll();
-
-        return $this->render(
-            'home.html.twig'
-        );
+        return $this->render('partials/header.html.twig', ['cats'=> $cats,]);
     }
 }

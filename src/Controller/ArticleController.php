@@ -29,14 +29,18 @@ class ArticleController extends AbstractController
      * @Route("/article/{slug}", name="show_art")
      * 
      */
-<<<<<<< HEAD
-    public function show(Article $art): Response
-=======
     public function show($slug, Article $art): Response
->>>>>>> f087bd576ca3b1bde47d3dd24907100ffe9e38da
     {
 
-        
+        $db = new PDO('mysql:host=serverbtssiojv.ddns.net;dbname=tchahangying_ppe3-projet1', 'tchahangying', 'tchahangying');
+        $sqlQuery = 'SELECT c.nameCat
+                     FROM Categorie c, Article a
+                     WHERE a.id_cat_id = c.idCat';
+                     
+        // foreach ($conn->query($sqlQuery) as $res)
+        // {
+
+        // }
 
         return $this->render('article/showArt.html.twig',[
             'art' => $art

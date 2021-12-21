@@ -34,17 +34,23 @@
                 </div>
             </div>
             <div class="col-md-6">
+                <div class="mt-4">
+                   <p><u><strong>{{ art.name }} </u>provenant de {{ art.origine }}</strong></p>
+                </div>
                 <div class="mt-2">
                     <p><strong>Description</strong> <br> {{ art.description }}</p>
                 </div>
                 <div class="mt-4">
-                   <p><strong>Prix de l'article : {{ art.prix }}&euro;</strong></p>
+                   <p><strong>Prix de l'article :&nbsp;</strong>{{ art.prix }}&euro;</p>
                 </div>
                 <div class="mt-4">
-                   <p><strong>Catégorie de l'article : {{ art.idCat.nameCat }}</strong></p>
+                   <p><strong>Catégorie de l'article : </strong><br>{{ art.idCat.nameCat }}</p>
                 </div>
                 <div class="mt-4">
-                   <p><strong>Prix de l'article : {{ art.prix }}&euro;</strong></p>
+                   <p><strong>En stock :</strong><br>{{ art.quantite }} disponible(s)</p>
+                </div>
+                <div class="mt-4">
+                   <p><strong>Noté :</strong><br>{{ art.note }} sur 5</p>
                 </div>
             </div>
         </div>

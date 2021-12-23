@@ -35,11 +35,14 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/vendeur, roles: ROLE_VENDEUR }
+        - { path: ^/acheteur, roles: ROLE_ACHETEUR }
+        - { path: ^/user, roles: ROLE_USER }
+
 
     # La partie role_hierarchy contient la hiérarchie des rôles
     # Un éditeur sera également utilisateur
     # Un administrateur sera également éditeur et donc utilisateur
     role_hierarchy:
-        ROLE_EDITOR: ROLE_USER
-        ROLE_ADMIN: ROLE_EDITOR
+        ROLE_EDITOR: ROLE_ADMIN
+        ROLE_ADMIN: ROLE_ADMIN

@@ -59,13 +59,14 @@ class SecurityController extends AbstractController
             $manager->flush();
             $this->addFlash(
                 'success',
-                "L'utilisateur <strong>{$user->getEmail()}</strong> a bien été enregistrée"
+                "L'utilisateur <strong>{$user->getEmail()}</strong> a bien été enregistré"
             );
+            return $this->redirectToRoute('homepage');
         }
-
         return $this->render('security/newAuth.html.twig',
             [
                 'form' => $form->createView()
             ]);
     }
+
 }

@@ -54,10 +54,34 @@
         </ul>
 
       {# Don't touch #}
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Se connecter</a>
-      </ul>
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+              <img src="/images-profils/image-pp.png" alt="image profil" style="width:2.7%" class="m-1">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      Mon compte
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                      <li><button class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">mes informations</button></li>
+                      <li><button class="dropdown-item" type="button" style="text-transform: uppercase; font-variant:all-small-caps">another action</button></li>
+                      {% if is_granted('ROLE_ADMIN') %}
+                          <li><button class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">admin</button></li>
+                      {% endif %}
+                      {% if is_granted('ROLE_ACHETEUR') %}
+                          <li><button class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">mes commandes</button></li>
+                      {% endif %}
+                      {% if is_granted('ROLE_VENDEUR') %}
+                          <li><button class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">mes ventes</button></li>
+                      {% endif %}
+                      <li><hr class="dropdown-divider"></li>
+                      <li><button class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">déconnexion</button></li>
+                  </ul>
+              </div>
+              {% else %}
+                  <ul class="navbar-nav">
+                      <li class="nav-item">
+                          <a class="nav-link active" href="{{ path('app_login') }}" style="text-transform: uppercase;">se connecter</a>
+                  </ul>
+          {% endif %}
       {# Don't touch #}
     </div>
   </div>

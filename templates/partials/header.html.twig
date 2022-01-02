@@ -63,10 +63,10 @@
                       <li><button class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">mes informations</button></li>
                       <li><button class="dropdown-item" type="button" style="text-transform: uppercase; font-variant:all-small-caps">another action</button></li>
                       {% if is_granted('ROLE_ADMIN') %}
-                          <li><button class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">admin</button></li>
+                          <li><a class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">admin</a></li>
                       {% endif %}
                       {% if is_granted('ROLE_ACHETEUR') %}
-                          <li><button class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">mes commandes</button></li>
+                          <li><a href="{{ path('commande') }}" class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">mes commandes</a></li>
                       {% endif %}
                       {% if is_granted('ROLE_VENDEUR') %}
                           <li><button class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">mes ventes</button></li>

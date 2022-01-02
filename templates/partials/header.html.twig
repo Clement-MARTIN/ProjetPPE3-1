@@ -55,7 +55,6 @@
 
       {# Don't touch #}
           {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-              <img src="/images-profils/image-pp.png" alt="image profil" style="width:2.7%" class="m-1">
               <div class="btn-group">
                   <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                       Mon compte
@@ -73,9 +72,12 @@
                           <li><button class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">mes ventes</button></li>
                       {% endif %}
                       <li><hr class="dropdown-divider"></li>
-                      <li><button class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">déconnexion</button></li>
+                      <li><a href="{{ path('app_logout') }}" class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">déconnexion</a></li>
                   </ul>
               </div>
+              {% if is_granted('ROLE_ACHETEUR') %}
+                  <a class="m-2"><img src="https://img.icons8.com/color/35/000000/shopping-basket.png"/></a>
+              {% endif %}
               {% else %}
                   <ul class="navbar-nav">
                       <li class="nav-item">

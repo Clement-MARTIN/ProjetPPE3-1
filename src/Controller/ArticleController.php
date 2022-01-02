@@ -29,11 +29,8 @@ class ArticleController extends AbstractController
      * @Route("/article/{slug}", name="show_art")
      * 
      */
-    public function show($slug, Article $art): Response
+    public function show(Article $art): Response
     {
-
-       
-
         return $this->render('article/showArt.html.twig',[
             'art' => $art
         ]);

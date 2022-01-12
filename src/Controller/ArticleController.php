@@ -7,6 +7,7 @@ use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Repository\ArticleRepository;
 use App\Repository\CategorieRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,6 +23,17 @@ class ArticleController extends AbstractController
 
         return $this->render('article/base.html.twig', [
             'arts' => $arts, 
+        ]);
+    }
+
+    /**
+     * @Route("/article/search/{idCat?0}", name="search")
+     * 
+     */
+    public function search(ArticleRepository $repo, int $idCat=0, Request $request): Response
+    {
+        return $this->render('article/search.html.twig', [
+            'arts' => $repo -> findByCategorie($idCat)
         ]);
     }
 
@@ -46,4 +58,5 @@ class ArticleController extends AbstractController
             'art' => $art
         ]);
     }
+    
 }

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig'%}
+
+
+{%  block title %} Edition  d'un joueur {% endblock %}
+
+
+{% block body %}
+ 
+   <div class="container ">
+      <div class="card border primary" id="card">
+      <div class="card-header">
+      </div>
+         <div id="form">
+           {{ form_start(form) }}
+              <div class="row">
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.name) }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.description) }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.prix) }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.quantite) }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.origine) }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.frais_de_port) }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.idCat) }}
+            </div>
+            {{ form_end(form) }}
+
+            <button type="submit" class="btn btn-primary">modification de l'article </button>
+
+            
+            </div>
+      </div>
+   </div>
+{% endblock %}

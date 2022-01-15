@@ -15,4 +15,5 @@ class ListCatController extends AbstractController
         $cats = $repo->findAll();
         return $this->render('partials/header.html.twig', ['cats'=> $cats,]);
     }
+
 }

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+    <div class="container">
+            <p> Créer un article !</p>
+            {{form_start(form)}}
+             <div class="row">
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.name) }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.description) }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.prix) }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.quantite) }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.origine) }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.frais_de_port) }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.filename) }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.imageFile) }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form_row(form.idCat) }}
+            </div>
+
+            <input type="hidden" id="widgets-counter" value="0">
+
+            <div class="form-groupe">
+            <button type="submit" id="add-image" class="btn btn-primary">Ajouter</button>
+            </div>
+            {{form_end(form)}}
+        </div>      
+    </div>
+{% endblock %}
+

@@ -29,36 +29,68 @@
             <a class="nav-link active" href="{{path('base_article')}}">Articles</a>
           </li>
 
-          {% set url = 0 %}
-          <form id="formRecherche" name="formRecherche" method="POST" action={{path('search')}} class="border border-primary">
+          <form id="formRecherche" name="formRecherche" action="{{path('search')}}" class="border border-primary">
               <div class="row">
                   <div class="col-md-7">
+
                       <select name="categorie" class="form-control">
                         <option value=''>Toutes les catégories</option>
                         {% for cat in cats %}
-                            <option value="{{cat.id}}">{{cat.nameCat}}</option>     
-                        {% endfor %}
+                            <option value='"{{cat.id}}"'".$selection.">{{cat.nameCat}}</option>     
+                        {% endfor %}            
                       </select>
+                      
                   </div>
                   <div class="col-md-4">
                         <input class="form-control" type="text" id="text" placeholder="Recherche"
                         value=''>
                   </div>
-               
+                  
                   <div class="col-md-1">
                       <button type="submit" class="btn btn-success btn-block">Rechercher</button>
                   </div>
               </div>
           </form>
+
+
+          
+                            
+
           
         {#Fin class NavBar#}
         </ul>
 
       {# Don't touch #}
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Se connecter</a>
-      </ul>
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+              <div class="btn-group">
+                  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      Mon compte
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                      <li><button class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">mes informations</button></li>
+                      <li><button class="dropdown-item" type="button" style="text-transform: uppercase; font-variant:all-small-caps">another action</button></li>
+                      {% if is_granted('ROLE_ADMIN') %}
+                          <li><a class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">admin</a></li>
+                      {% endif %}
+                      {% if is_granted('ROLE_ACHETEUR') %}
+                          <li><a href="{{ path('commande') }}" class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">mes commandes</a></li>
+                      {% endif %}
+                      {% if is_granted('ROLE_VENDEUR') %}
+                          <li><button class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">mes ventes</button></li>
+                      {% endif %}
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a href="{{ path('app_logout') }}" class="dropdown-item" type="button" style="text-transform: uppercase;font-variant:all-small-caps">déconnexion</a></li>
+                  </ul>
+              </div>
+              {% if is_granted('ROLE_ACHETEUR') %}
+                  <a class="m-2"><img src="https://img.icons8.com/color/35/000000/shopping-basket.png"/></a>
+              {% endif %}
+              {% else %}
+                  <ul class="navbar-nav">
+                      <li class="nav-item">
+                          <a class="nav-link active" href="{{ path('app_login') }}" style="text-transform: uppercase;">se connecter</a>
+                  </ul>
+          {% endif %}
       {# Don't touch #}
     </div>
   </div>

@@ -19,21 +19,33 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    public function Search(int $idCat, string $name)
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            "select a
+            from App\Entity\Article a
+            where id_cat_id = :idCAT
+            AND name like :NAME")
+            -> setParameter('idCat', $idCat)
+            -> setParameter('NAME', "% $name %" );
+    }
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */
    
-    public function findByCategorie($value)
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.idCat = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.name', 'ASC')
+    //public function findByCategorie($value)
+   // {
+        //return $this->createQueryBuilder('a')
+            //->andWhere('a.idCat = :val')
+            //->setParameter('val', $value)
+            //->orderBy('a.name', 'ASC')
             //->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+            //->getQuery()
+            //->getResult()
+     //   ;
+   // }
   
 
     /*

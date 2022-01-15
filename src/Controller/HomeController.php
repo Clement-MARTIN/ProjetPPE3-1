@@ -11,18 +11,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/{idCat?0}", name="homepage")
+     * @Route("/", name="homepage")
      */
-    public function recentArticles(CategorieRepository $repo, $idCat,Request $req)
+    public function index()
     {
-        dump($req);
-        if ($idCat != "0"){
-            return $this->redirectToRoute('search', ['idCat'=>$idCat]);
-        }
-        $cats = $repo->findAll();
-
         return $this->render(
             'home.html.twig'
         );
     }
+
+
+    
+
+    // /**
+    //  * @Route("/article/search/{cat.id?0}", name="chercher")
+    //  */
+    // public function recentArticles(CategorieRepository $repo, $idCat,Request $req)
+    // {
+
+    //     if ($idCat != "0"){
+    //         return $this->redirectToRoute('search', ['idCat'=>$idCat]);
+    //     }
+    //     $cats = $repo->findAll();
+    // }
 }

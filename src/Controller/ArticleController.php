@@ -27,13 +27,15 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/article/search/{idCat?0}", name="search")
+     * @Route("/article/search", name="search")
      * 
      */
-    public function search(ArticleRepository $repo, int $idCat=0, Request $request): Response
+    public function search(ArticleRepository $repo, int $idCat, string $name): Response
     {
+        $idCat= $this->get('cat.id');
+        $article= $repo -> Search($idCat, $name);
         return $this->render('article/search.html.twig', [
-            'arts' => $repo -> findByCategorie($idCat)
+            'arts' =>  $article
         ]);
     }
 
@@ -41,19 +43,8 @@ class ArticleController extends AbstractController
      * @Route("/article/{slug}", name="show_art")
      * 
      */
-    public function show($slug, Article $art): Response
+    public function show(Article $art): Response
     {
-
-        $db = new PDO('mysql:host=serverbtssiojv.ddns.net;dbname=tchahangying_ppe3-projet1', 'tchahangying', 'tchahangying');
-        $sqlQuery = 'SELECT c.nameCat
-                     FROM Categorie c, Article a
-                     WHERE a.id_cat_id = c.idCat';
-                     
-        // foreach ($conn->query($sqlQuery) as $res)
-        // {
-
-        // }
-
         return $this->render('article/showArt.html.twig',[
             'art' => $art
         ]);

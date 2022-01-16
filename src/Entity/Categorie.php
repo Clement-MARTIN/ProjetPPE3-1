@@ -133,4 +133,5 @@ class Categorie
 
         return $this;
     }
+
 }

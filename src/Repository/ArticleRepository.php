@@ -25,10 +25,10 @@ class ArticleRepository extends ServiceEntityRepository
         $query = $entityManager->createQuery(
             "select a
             from App\Entity\Article a
-            where id_cat_id = :idCAT
-            AND name like :NAME")
+            where id_cat_id = :idCat
+            AND name like :Name")
             -> setParameter('idCat', $idCat)
-            -> setParameter('NAME', "% $name %" );
+            -> setParameter('Name', "% $name %" );
     }
 
     // /**

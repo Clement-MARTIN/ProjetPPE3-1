@@ -5,11 +5,13 @@ namespace App\Controller;
 use PDO;
 use App\Entity\Article;
 use App\Entity\Categorie;
+use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategorieRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArticleController extends AbstractController
@@ -25,6 +27,14 @@ class ArticleController extends AbstractController
             'arts' => $arts, 
         ]);
     }
+
+    // /**
+    //  * @Route("/article/search", name="search")
+    //  * 
+    //  */
+    // public function search(Request $request){
+    //     return $this-> render('search/');
+    // }
 
     /**
      * @Route("/article/search", name="search")

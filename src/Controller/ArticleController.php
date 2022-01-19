@@ -93,12 +93,16 @@ class ArticleController extends AbstractController
 
             $manager->persist($article);
             $manager->flush();
+            return $this->render('article/showArt.html.twig', [
+                'art' => $article,
+            ]);
         }
+        
         return $this->render('article/editArt.html.twig', [
             'art' => $article,
             'form' => $form->createView()
         ]);
-        return $this->redirectToRoute("show_art");
+        
         $this->addFlash(
             'success',
             "le joueur <strong>{$article->getName()}</strong> a bien été enregistrée !"

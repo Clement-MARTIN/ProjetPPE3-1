@@ -58,6 +58,9 @@ class ArticleController extends AbstractController
 
             $manager->persist($article);
             $manager->flush();
+            return $this->render('article/showArt.html.twig',[
+                'art' => $article
+            ]);
 
         }
         
@@ -67,9 +70,7 @@ class ArticleController extends AbstractController
 
         // }
 
-        return $this->render('article/showArt.html.twig',[
-            'art' => $article
-        ]);
+        
 
         return $this-> render ('article/modifArt.html.twig', [
             'form' => $form->createView()

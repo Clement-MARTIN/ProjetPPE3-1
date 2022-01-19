@@ -21,15 +21,45 @@ class ArticleRepository extends ServiceEntityRepository
 
     public function Search(int $idCat, string $name)
     {
+        if($idCat==0 && $name ==""){
         $entityManager = $this->getEntityManager();
         $query = $entityManager->createQuery(
             "select a
-            from App\Entity\Article a
-            where id_cat_id = :idCat
-            AND name like :Name")
-            -> setParameter('idCat', $idCat)
-            -> setParameter('Name', "% $name %" );
+            from App\Entity\Article a");
+        }
+      
+        if($idCat==0 && $name !=""){
+            $entityManager = $this->getEntityManager();
+            $query = $entityManager->createQuery(
+                "select a
+                from App\Entity\Article a
+                where a.name like :Name")
+                -> setParameter('Name', "% $name %" );
+        }
+                
+        if($name == "" && $idCat!=0){
+            $entityManager = $this->getEntityManager();
+            $query = $entityManager->createQuery(
+                "select a
+                from App\Entity\Article a
+                where a.idCat = :idCat")
+                -> setParameter('idCat', $idCat);
+        }
+
+        if($name !="" && $idCat !=0){
+            $entityManager = $this->getEntityManager();
+            $query = $entityManager->createQuery(
+                "select a
+                from App\Entity\Article a
+                where a.idCat = :idCat
+                AND a.name like :Name")
+                -> setParameter('idCat', $idCat)
+                -> setParameter('Name', "% $name %" );
+        }
+        return $query->getResult();   
     }
+
+    
 
     // /**
     //  * @return Article[] Returns an array of Article objects
